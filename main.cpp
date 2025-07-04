@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ESTRUCTURAS_H"
+#include "estructuras.h"
 using namespace std;
 
 int main() {
