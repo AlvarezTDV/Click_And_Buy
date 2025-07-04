@@ -1,5 +1,5 @@
 #include <iostream>
-#include "estructuras.h"
+#include "superclasecomponente.h"
 using namespace std;
 
 int main() {
