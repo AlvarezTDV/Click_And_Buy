@@ -23,14 +23,6 @@ class componente {
 		int mostrarPrecio();
 };
 
-class gpu : public componente {
-	private:
-		int nucleos;
-		int ventiladores;
-		int vram;
-		string generacion;
-};
-
 class cpu : public componente {
 	private:
 		int nucleos;
@@ -124,6 +116,7 @@ class microfono : public componente {
 		bool filtroAntiRuido;
 };
 
+/*
 struct inventario {
 	gpu tarjetas[MAX];
 	cpu procesadores[MAX];
@@ -139,6 +132,6 @@ struct inventario {
 	mouse ratones[MAX];
 	auricular auriculares[MAX];
 	microfono microfonos[MAX];
-};
+};*/
 
 #endif
