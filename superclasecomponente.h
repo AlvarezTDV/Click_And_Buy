@@ -23,6 +23,7 @@ class componente {
 		int mostrarPrecio();
 };
 
+/*
 class cpu : public componente {
 	private:
 		int nucleos;
@@ -30,7 +31,7 @@ class cpu : public componente {
 		int frecuencia;
 		string generacion;
 		string socket;
-};
+};*/
 
 class psu : public componente {
 	private:
