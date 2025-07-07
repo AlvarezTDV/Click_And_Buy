@@ -4,10 +4,10 @@
 using namespace std;
 
 //CONSTRUCTOR DE LA SUPER CLASE
-componente::componente(string n, string m, int p) {
-	nombre = n;
-	marca = m;
-	precio = p;
+componente::componente() {
+	nombre = "";
+	marca = "";
+	precio = 0;
 }
 
 //RETORNAR EL NOMBRE

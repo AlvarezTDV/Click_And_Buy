@@ -14,13 +14,16 @@ class gpu : public componente {
 	
 	public:
 		//CONSTRUCTOR
-		gpu(int nu, int ven, int vr, string g, string n, string m, int p);
+		gpu();
 		
 		//RETORNAR ATRIBUTOS
 		int mostrarNucleos();
 		int mostrarVentiladores();
 		int mostrarVram();
 		string mostrarGeneracion();
+		
+		//GENERAR TARJETA ALEATORIA
+		void generarTarjeta();
 };
 
 #endif

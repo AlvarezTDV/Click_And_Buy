@@ -15,7 +15,7 @@ class componente {
 		
 	public:
 		//CONSTRUCTOR
-		componente(string n, string m, int p);
+		componente();
 		
 		//RETORNAR ATRIBUTOS
 		string mostrarNombre();
