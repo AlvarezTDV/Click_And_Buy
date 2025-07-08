@@ -1,6 +1,6 @@
-#include "clasemotherboard.h"
-#include "superclasecomponente.h"
-#include "funciones.h"
+#include "../include/clasemotherboard.h"
+#include "../include/superclasecomponente.h"
+#include "../include/funciones.h"
 
 #include <string>
 using namespace std;

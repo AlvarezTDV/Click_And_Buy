@@ -1,6 +1,6 @@
-#include "clasecpu.h"
-#include "superclasecomponente.h"
-#include "funciones.h"
+#include "../include/clasecpu.h"
+#include "../include/superclasecomponente.h"
+#include "../include/funciones.h"
 
 #include <string>
 using namespace std;

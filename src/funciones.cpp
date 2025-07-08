@@ -1,4 +1,4 @@
-#include "funciones.h"
+#include "../include/funciones.h"
 
 #include <random>
 using namespace std;

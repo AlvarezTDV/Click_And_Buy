@@ -1,6 +1,6 @@
-#include "claseram.h"
-#include "superclasecomponente.h"
-#include "funciones.h"
+#include "../include/claseram.h"
+#include "../include/superclasecomponente.h"
+#include "../include/funciones.h"
 
 #include <string>
 using namespace std;

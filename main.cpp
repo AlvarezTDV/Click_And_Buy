@@ -1,6 +1,4 @@
-#include "superclasecomponente.h"
-#include "clasegpu.h"
-#include "clasecpu.h"
+#include "include/includes.h"
 
 #include <iostream>
 using namespace std;
@@ -15,7 +13,7 @@ int main() {
 	cout << g1.mostrarNucleos() << endl;
 	cout << g1.mostrarVentiladores() << endl;
 	cout << g1.mostrarVram() << endl;
-	cout << g1.mostrarGeneracion() << endl;
+	cout << g1.mostrarGeneracion() << endl << endl;
 	
 	cpu c1;
 	c1.generarProcesador();
@@ -27,6 +25,39 @@ int main() {
 	cout << c1.mostrarHilos() << endl;
 	cout << c1.mostrarFrecuencia() << endl;
 	cout << c1.mostrarGeneracion() << endl;
-	cout << c1.mostrarSocket() << endl;
+	cout << c1.mostrarSocket() << endl << endl;
+	
+	psu p1;
+	p1.generarFuente();
+	cout << "Fuente generado" << endl;
+	cout << p1.mostrarNombre() << endl;
+	cout << p1.mostrarMarca() << endl;
+	cout << p1.mostrarPrecio() << endl;
+	cout << p1.mostrarWatts() << endl;
+	cout << p1.mostrarSiTieneCertificacion() << endl;
+	cout << p1.mostrarCertificacion() << endl;
+	cout << p1.mostrarSiEsModular() << endl << endl;
+	
+	ram r1;
+	r1.generarRam();
+	cout << "Ram generada" << endl;
+	cout << r1.mostrarNombre() << endl;
+	cout << r1.mostrarMarca() << endl;
+	cout << r1.mostrarPrecio() << endl;
+	cout << r1.mostrarTipo() << endl;
+	cout << r1.mostrarCapacidad() << endl;
+	cout << r1.mostrarVelocidad() << endl;
+	cout << r1.mostrarLatencia() << endl << endl;
+	
+	motherboard m1;
+	m1.generarMotherboard();
+	cout << "Mother generada" << endl;
+	cout << m1.mostrarNombre() << endl;
+	cout << m1.mostrarMarca() << endl;
+	cout << m1.mostrarPrecio() << endl;
+	cout << m1.mostrarFormato() << endl;
+	cout << m1.mostrarChipset() << endl;
+	cout << m1.mostrarSocketCpu() << endl;
+	cout << m1.mostrarSlotsRam() << endl << endl;
 	return 0;
 }

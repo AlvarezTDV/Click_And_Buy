@@ -1,4 +1,4 @@
-#include "superclasecomponente.h"
+#include "../include/superclasecomponente.h"
 
 #include <string>
 using namespace std;
