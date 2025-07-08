@@ -23,22 +23,6 @@ class componente {
 		int mostrarPrecio();
 };
 
-class ram : public componente {
-	private:
-		string tipo;
-		int capacidad;
-		int velocidad;
-		int latencia;
-};
-
-class motherboard : public componente {
-	private:
-		string formato;
-		string chipset;
-		string socketCpu;
-		int slotsRam;
-};
-
 class ssd : public componente {
 	private:
 		int capacidad;
