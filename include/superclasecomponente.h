@@ -23,46 +23,6 @@ class componente {
 		int mostrarPrecio();
 };
 
-class gabinete : public componente {
-	private:
-		string tamanio;
-		string material;
-};
-
-class monitor : public componente {
-	private:
-		int tamanioPantalla;
-		string resolucion;
-		int tasaRefresco;
-};
-
-class teclado: public componente {
-	private:
-		string switches;
-		string distribucionTeclas;
-		string iluminacion;
-};
-
-class mouse : public componente {
-	private:
-		int dpi;
-		int numBotones;
-		int peso;
-};
-
-class auricular : public componente {
-	private:
-		int tiempoRespuesta;
-		string microfono;
-};
-
-class microfono : public componente {
-	private:
-		int tiempoRespuesta;
-		string tieneSoporte;
-		string filtroAntiRuido;
-};
-
 /*
 struct inventario {
 	gpu tarjetas[MAX];

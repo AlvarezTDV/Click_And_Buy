@@ -4,6 +4,7 @@
 using namespace std;
 
 int main() {
+	//PROBANDO SI SE GENERAN LOS COMPONENTES
 	gpu g1;
 	g1.generarTarjeta();
 	cout << "Tarjeta generada:" << endl;
@@ -88,5 +89,14 @@ int main() {
 	cout << rl1.mostrarPrecio() << endl;
 	cout << rl1.mostrarCompatibilidadSocket() << endl;
 	cout << rl1.mostrarNumVentiladores() << endl << endl;
+	
+	gabinete ga1;
+	ga1.generarGabinete();
+	cout << "Gabinete generado" << endl;
+	cout << ga1.mostrarNombre() << endl;
+	cout << ga1.mostrarMarca() << endl;
+	cout << ga1.mostrarPrecio() << endl;
+	cout << ga1.mostrarTamanio() << endl;
+	cout << ga1.mostrarMaterial() << endl << endl;
 	return 0;
 }

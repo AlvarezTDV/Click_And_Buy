@@ -10,5 +10,6 @@
 #include "clasessd.h"
 #include "clasedisipador.h"
 #include "claserefrigeracionliquida.h"
+#include "clasegabinete.h"
 
 #endif
