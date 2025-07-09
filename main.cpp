@@ -78,7 +78,15 @@ int main() {
 	cout << d1.mostrarMarca() << endl;
 	cout << d1.mostrarPrecio() << endl;
 	cout << d1.mostrarCompatibilidadSocket() << endl;
-	cout << d1.mostrarHeatPipes() << endl;
-
+	cout << d1.mostrarHeatPipes() << endl << endl;
+	
+	refrigeracionLiquida rl1;
+	rl1.generarRefrigeracionLiquida();
+	cout << "Refrigeracion liquida generado" << endl;
+	cout << rl1.mostrarNombre() << endl;
+	cout << rl1.mostrarMarca() << endl;
+	cout << rl1.mostrarPrecio() << endl;
+	cout << rl1.mostrarCompatibilidadSocket() << endl;
+	cout << rl1.mostrarNumVentiladores() << endl << endl;
 	return 0;
 }

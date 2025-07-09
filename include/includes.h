@@ -9,5 +9,6 @@
 #include "clasemotherboard.h"
 #include "clasessd.h"
 #include "clasedisipador.h"
+#include "claserefrigeracionliquida.h"
 
 #endif

@@ -23,12 +23,6 @@ class componente {
 		int mostrarPrecio();
 };
 
-class refrigeracionLiquida : public componente {
-	private:
-		string compatibilidadSocket;
-		int numVentiladores;
-};
-
 class gabinete : public componente {
 	private:
 		string tamanio;
