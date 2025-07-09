@@ -7,5 +7,6 @@
 #include "clasepsu.h"
 #include "claseram.h"
 #include "clasemotherboard.h"
+#include "clasessd.h"
 
 #endif

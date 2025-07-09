@@ -23,14 +23,6 @@ class componente {
 		int mostrarPrecio();
 };
 
-class ssd : public componente {
-	private:
-		int capacidad;
-		int velocidadLectura;
-		int velocidadEscritura;
-		string pcie;
-};
-
 class disipador : public componente {
 	private:
 		string compatibilidadSocket;

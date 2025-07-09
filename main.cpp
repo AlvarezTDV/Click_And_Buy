@@ -59,5 +59,16 @@ int main() {
 	cout << m1.mostrarChipset() << endl;
 	cout << m1.mostrarSocketCpu() << endl;
 	cout << m1.mostrarSlotsRam() << endl << endl;
+	
+	ssd s1;
+	s1.generarSsd();
+	cout << "SSD generada" << endl;
+	cout << s1.mostrarNombre() << endl;
+	cout << s1.mostrarMarca() << endl;
+	cout << s1.mostrarPrecio() << endl;
+	cout << s1.mostrarCapacidad() << endl;
+	cout << s1.mostrarVelocidadLectura() << endl;
+	cout << s1.mostrarVelocidadEscritura() << endl;
+	cout << s1.mostrarPcie() << endl << endl;
 	return 0;
 }
