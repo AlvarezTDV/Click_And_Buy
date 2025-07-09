@@ -8,9 +8,9 @@ using namespace std;
 class psu : public componente {
 	private:
 		int watts;
-		bool tieneCertificacion;
+		string tieneCertificacion;
 		string certificacion;
-		bool esModular;
+		string esModular;
 	
 	public:
 		//CONSTRUCTOR
@@ -18,9 +18,9 @@ class psu : public componente {
 
 		//RETORNAR ATRIBUTOS
 		int mostrarWatts();
-		bool mostrarSiTieneCertificacion();
+		string mostrarSiTieneCertificacion();
 		string mostrarCertificacion();
-		bool mostrarSiEsModular();
+		string mostrarSiEsModular();
 		
 		//GENERAR FUENTE ALEATORIA
 		void generarFuente();

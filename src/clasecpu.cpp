@@ -45,7 +45,7 @@ void cpu::generarProcesador() {
 	switch (num) {
 		case 1:
 			nombre = "Core i9-14900K";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 589;
 			nucleos = 24;
 			hilos = 32;
@@ -65,7 +65,7 @@ void cpu::generarProcesador() {
 			break;
 		case 3:
 			nombre = "Core i7-14700K";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 409;
 			nucleos = 20;
 			hilos = 28;
@@ -85,7 +85,7 @@ void cpu::generarProcesador() {
 			break;
 		case 5:
 			nombre = "Core i5-14600K";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 319;
 			nucleos = 14;
 			hilos = 20;
@@ -105,7 +105,7 @@ void cpu::generarProcesador() {
 			break;
 		case 7:
 			nombre = "Core i5-13600K";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 289;
 			nucleos = 14;
 			hilos = 20;
@@ -125,7 +125,7 @@ void cpu::generarProcesador() {
 			break;
 		case 9:
 			nombre = "Core i7-13700K";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 379;
 			nucleos = 16;
 			hilos = 24;
@@ -145,7 +145,7 @@ void cpu::generarProcesador() {
 			break;
 		case 11:
 			nombre = "Core i5-12600K";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 259;
 			nucleos = 10;
 			hilos = 16;
@@ -165,7 +165,7 @@ void cpu::generarProcesador() {
 			break;
 		case 13:
 			nombre = "Core i3-14100";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 149;
 			nucleos = 4;
 			hilos = 8;
@@ -185,7 +185,7 @@ void cpu::generarProcesador() {
 			break;
 		case 15:
 			nombre = "Core i5-12400F";
-			marca = "INTEL";
+			marca = "Intel";
 			precio = 189;
 			nucleos = 6;
 			hilos = 12;

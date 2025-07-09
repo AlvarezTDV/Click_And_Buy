@@ -60,7 +60,7 @@ class teclado: public componente {
 	private:
 		string switches;
 		string distribucionTeclas;
-		bool iluminacion;
+		string iluminacion;
 };
 
 class mouse : public componente {
@@ -73,14 +73,14 @@ class mouse : public componente {
 class auricular : public componente {
 	private:
 		int tiempoRespuesta;
-		bool microfono;
+		string microfono;
 };
 
 class microfono : public componente {
 	private:
 		int tiempoRespuesta;
-		bool tieneSoporte;
-		bool filtroAntiRuido;
+		string tieneSoporte;
+		string filtroAntiRuido;
 };
 
 /*
