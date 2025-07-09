@@ -23,12 +23,6 @@ class componente {
 		int mostrarPrecio();
 };
 
-class disipador : public componente {
-	private:
-		string compatibilidadSocket;
-		int heatPipes;
-};
-
 class refrigeracionLiquida : public componente {
 	private:
 		string compatibilidadSocket;

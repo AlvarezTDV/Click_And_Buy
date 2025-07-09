@@ -70,5 +70,15 @@ int main() {
 	cout << s1.mostrarVelocidadLectura() << endl;
 	cout << s1.mostrarVelocidadEscritura() << endl;
 	cout << s1.mostrarPcie() << endl << endl;
+	
+	disipador d1;
+	d1.generarDisipador();
+	cout << "Disipador generado" << endl;
+	cout << d1.mostrarNombre() << endl;
+	cout << d1.mostrarMarca() << endl;
+	cout << d1.mostrarPrecio() << endl;
+	cout << d1.mostrarCompatibilidadSocket() << endl;
+	cout << d1.mostrarHeatPipes() << endl;
+
 	return 0;
 }
