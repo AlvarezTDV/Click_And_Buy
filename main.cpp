@@ -7,7 +7,7 @@ int i = 0; //INDICE DEL ARREGLO DE COMPONENTES
 
 int main() {
 	//PROBANDO SI SE GENERAN LOS COMPONENTES
-	/*gpu g1;
+	gpu g1;
 	g1.generarTarjeta();
 	cout << "Tarjeta generada:" << endl;
 	cout << g1.mostrarNombre() << endl;
@@ -99,17 +99,17 @@ int main() {
 	cout << ga1.mostrarMarca() << endl;
 	cout << ga1.mostrarPrecio() << endl;
 	cout << ga1.mostrarTamanio() << endl;
-	cout << ga1.mostrarMaterial() << endl << endl;*/
+	cout << ga1.mostrarMaterial() << endl << endl;
 	
 	generarComponente();
 	cout << "Tarjeta generada:" << endl;
-	cout << componentes[0]->mostrarNombre() << endl;
-	cout << componentes[0]->mostrarMarca() << endl;
-	cout << componentes[0]->mostrarPrecio() << endl;
-	cout << componentes[0]->mostrarNucleosGpu() << endl;
-	cout << componentes[0]->mostrarVentiladores() << endl;
-	cout << componentes[0]->mostrarVram() << endl;
-	cout << componentes[0]->mostrarGeneracion() << endl << endl;
+	cout << inventarioGpu[0].mostrarNombre() << endl;
+	cout << inventarioGpu[0].mostrarMarca() << endl;
+	cout << inventarioGpu[0].mostrarPrecio() << endl;
+	cout << inventarioGpu[0].mostrarNucleos() << endl;
+	cout << inventarioGpu[0].mostrarVentiladores() << endl;
+	cout << inventarioGpu[0].mostrarVram() << endl;
+	cout << inventarioGpu[0].mostrarGeneracion() << endl << endl;
 	
 	return 0;
 }

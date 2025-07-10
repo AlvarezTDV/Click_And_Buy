@@ -14,17 +14,18 @@ int NumRandom(int min, int max) {
 	return dis(gen);
 }
 
-//ARREGLO QUE ALMACENA LOS COMPONENTES
-componente* componentes[50];
+//ARREGLO QUE ALMACENA GPU
+gpu inventarioGpu[10];
 
 //FUNCION PARA GENERAR COMPONENTES ALEATORIOS
 void generarComponente() {
 	int num = NumRandom(1, 1);
 	switch (num) {
 		case 1:
-			gpu* gpuTemp = new gpu();
-			gpuTemp->generarTarjeta();
-			componentes[i] = gpuTemp;
+			gpu Temp;
+			Temp.generarTarjeta();
+			inventarioGpu[i] = Temp;
+			i++;
 			break;
 		/*case 2:
 			break;

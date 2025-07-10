@@ -14,7 +14,7 @@ gpu::gpu():componente() {
 }
 
 //RETORNAR LOS NUCLEOS
-int gpu::mostrarNucleosGpu() {
+int gpu::mostrarNucleos() {
 	return nucleos;
 }
 

@@ -21,12 +21,6 @@ class componente {
 		string mostrarNombre();
 		string mostrarMarca();
 		int mostrarPrecio();
-		
-		//FUNCIONES VIRTUALES (GPU)
-		virtual int mostrarNucleosGpu() = 0;
-		virtual int mostrarVentiladores() = 0;
-		virtual int mostrarVram() = 0;
-		virtual string mostrarGeneracion() = 0;
 };
 
 #endif
