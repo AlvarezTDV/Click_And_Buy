@@ -1,7 +1,7 @@
 #ifndef funciones_h
 #define funciones_h
 
-#include "clasegpu.h"
+#include "includes.h"
 using namespace std;
 
 //FUNCIONES QUE SE VAYAN A USAR DE MANERA REPETIDA
@@ -10,8 +10,9 @@ using namespace std;
 int NumRandom(int, int);
 void generarComponente();
 
-//ARREGLO QUE ALMACENA GPU
+//INVENTARIO
 extern gpu inventarioGpu[10];
+extern cpu inventarioCpu[10];
 extern int i; //INDICE DEL ARREGLO DE COMPONENTES
 
 #endif

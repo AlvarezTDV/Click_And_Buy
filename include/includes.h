@@ -2,7 +2,6 @@
 #define includes_h
 
 //SE AGREGAN TODAS LAS FUNCIONES Y CLASES PARA MEJOR ORDEN
-#include "funciones.h"
 #include "clasegpu.h"
 #include "clasecpu.h"
 #include "clasepsu.h"
@@ -12,5 +11,6 @@
 #include "clasedisipador.h"
 #include "claserefrigeracionliquida.h"
 #include "clasegabinete.h"
+#include "funciones.h"
 
 #endif

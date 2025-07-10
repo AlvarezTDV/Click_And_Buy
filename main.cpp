@@ -111,5 +111,16 @@ int main() {
 	cout << inventarioGpu[0].mostrarVram() << endl;
 	cout << inventarioGpu[0].mostrarGeneracion() << endl << endl;
 	
+	generarComponente();
+	cout << "Procesador generado:" << endl;
+	cout << inventarioCpu[0].mostrarNombre() << endl;
+	cout << inventarioCpu[0].mostrarMarca() << endl;
+	cout << inventarioCpu[0].mostrarPrecio() << endl;
+	cout << inventarioCpu[0].mostrarNucleos() << endl;
+	cout << inventarioCpu[0].mostrarHilos() << endl;
+	cout << inventarioCpu[0].mostrarFrecuencia() << endl;
+	cout << inventarioCpu[0].mostrarGeneracion() << endl;
+	cout << inventarioCpu[0].mostrarSocket() << endl << endl;
+	
 	return 0;
 }
