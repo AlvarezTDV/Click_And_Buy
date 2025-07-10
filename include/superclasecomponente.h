@@ -21,24 +21,12 @@ class componente {
 		string mostrarNombre();
 		string mostrarMarca();
 		int mostrarPrecio();
+		
+		//FUNCIONES VIRTUALES (GPU)
+		virtual int mostrarNucleosGpu() = 0;
+		virtual int mostrarVentiladores() = 0;
+		virtual int mostrarVram() = 0;
+		virtual string mostrarGeneracion() = 0;
 };
-
-/*
-struct inventario {
-	gpu tarjetas[MAX];
-	cpu procesadores[MAX];
-	psu fuentesDePoder[MAX];
-	ram memoriasRam[MAX];
-	motherboard tarjetasMadre[MAX];
-	ssd almacenamientos[MAX];
-	disipador disipadores[MAX];
-	refrigeracionLiquida refrigeracionesLiquidas[MAX];
-	gabinete gabinetes[MAX];
-	monitor monitores[MAX];
-	teclado teclados[MAX];
-	mouse ratones[MAX];
-	auricular auriculares[MAX];
-	microfono microfonos[MAX];
-};*/
 
 #endif

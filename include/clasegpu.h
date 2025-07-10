@@ -17,10 +17,10 @@ class gpu : public componente {
 		gpu();
 		
 		//RETORNAR ATRIBUTOS
-		int mostrarNucleos();
-		int mostrarVentiladores();
-		int mostrarVram();
-		string mostrarGeneracion();
+		int mostrarNucleosGpu() override;
+		int mostrarVentiladores() override;
+		int mostrarVram() override;
+		string mostrarGeneracion() override;
 		
 		//GENERAR TARJETA ALEATORIA
 		void generarTarjeta();
