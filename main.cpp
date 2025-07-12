@@ -165,5 +165,12 @@ int main() {
 	cout << inventarioDisipador[0].mostrarCompatibilidadSocket() << endl;
 	cout << inventarioDisipador[0].mostrarHeatPipes() << endl << endl;
 	
+	cout << "Refrigeracion liquida generado" << endl;
+	cout << inventarioRefrigeracionLiquida[0].mostrarNombre() << endl;
+	cout << inventarioRefrigeracionLiquida[0].mostrarMarca() << endl;
+	cout << inventarioRefrigeracionLiquida[0].mostrarPrecio() << endl;
+	cout << inventarioRefrigeracionLiquida[0].mostrarCompatibilidadSocket() << endl;
+	cout << inventarioRefrigeracionLiquida[0].mostrarNumVentiladores() << endl << endl;
+	
 	return 0;
 }

@@ -22,10 +22,11 @@ ram inventarioRam[10];
 motherboard inventarioMotherboard[10];
 ssd inventarioSsd[10];
 disipador inventarioDisipador[10];
+refrigeracionLiquida inventarioRefrigeracionLiquida[10];
 
 //FUNCION PARA GENERAR COMPONENTES ALEATORIOS
 void generarComponente() {
-	int num = NumRandom(6, 7);
+	int num = NumRandom(8, 8);
 	switch (num) {
 		case 1: {
 			gpu gpuTemp;
@@ -76,9 +77,14 @@ void generarComponente() {
 			i++;
 			break;
 		}
-		/*case 8:
+		case 8: {
+			refrigeracionLiquida refrigeracionLiquidaTemp;
+			refrigeracionLiquidaTemp.generarRefrigeracionLiquida();
+			inventarioRefrigeracionLiquida[i] = refrigeracionLiquidaTemp;
+			i++;
 			break;
-		case 9:
+		}
+		/*case 9:
 			break;*/
 	}
 }
