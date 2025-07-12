@@ -158,5 +158,12 @@ int main() {
 	cout << inventarioSsd[0].mostrarVelocidadEscritura() << endl;
 	cout << inventarioSsd[0].mostrarPcie() << endl << endl;
 	
+	cout << "Disipador generado" << endl;
+	cout << inventarioDisipador[0].mostrarNombre() << endl;
+	cout << inventarioDisipador[0].mostrarMarca() << endl;
+	cout << inventarioDisipador[0].mostrarPrecio() << endl;
+	cout << inventarioDisipador[0].mostrarCompatibilidadSocket() << endl;
+	cout << inventarioDisipador[0].mostrarHeatPipes() << endl << endl;
+	
 	return 0;
 }

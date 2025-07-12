@@ -21,10 +21,11 @@ psu inventarioPsu[10];
 ram inventarioRam[10];
 motherboard inventarioMotherboard[10];
 ssd inventarioSsd[10];
+disipador inventarioDisipador[10];
 
 //FUNCION PARA GENERAR COMPONENTES ALEATORIOS
 void generarComponente() {
-	int num = NumRandom(6, 6);
+	int num = NumRandom(6, 7);
 	switch (num) {
 		case 1: {
 			gpu gpuTemp;
@@ -68,9 +69,14 @@ void generarComponente() {
 			i++;
 			break;
 		}
-		/*case 7:
+		case 7: {
+			disipador disipadorTemp;
+			disipadorTemp.generarDisipador();
+			inventarioDisipador[i] = disipadorTemp;
+			i++;
 			break;
-		case 8:
+		}
+		/*case 8:
 			break;
 		case 9:
 			break;*/
