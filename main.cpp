@@ -122,5 +122,14 @@ int main() {
 	cout << inventarioCpu[0].mostrarGeneracion() << endl;
 	cout << inventarioCpu[0].mostrarSocket() << endl << endl;
 	
+	cout << "Fuente generado" << endl;
+	cout << inventarioPsu[0].mostrarNombre() << endl;
+	cout << inventarioPsu[0].mostrarMarca() << endl;
+	cout << inventarioPsu[0].mostrarPrecio() << endl;
+	cout << inventarioPsu[0].mostrarWatts() << endl;
+	cout << inventarioPsu[0].mostrarSiTieneCertificacion() << endl;
+	cout << inventarioPsu[0].mostrarCertificacion() << endl;
+	cout << inventarioPsu[0].mostrarSiEsModular() << endl << endl;
+	
 	return 0;
 }

@@ -17,10 +17,11 @@ int NumRandom(int min, int max) {
 //INVENTARIO
 gpu inventarioGpu[10];
 cpu inventarioCpu[10];
+psu inventarioPsu[10];
 
 //FUNCION PARA GENERAR COMPONENTES ALEATORIOS
 void generarComponente() {
-	int num = NumRandom(2, 2);
+	int num = NumRandom(1, 3);
 	switch (num) {
 		case 1: {
 			gpu gpuTemp;
@@ -36,9 +37,13 @@ void generarComponente() {
 			i++;
 			break;
 		}
-		/*case 3:
+		case 3:
+			psu psuTemp;
+			psuTemp.generarFuente();
+			inventarioPsu[i] = psuTemp;
+			i++;
 			break;
-		case 4:
+		/*case 4:
 			break;
 		case 5:
 			break;
