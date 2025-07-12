@@ -2,25 +2,24 @@
 #define funciones_h
 
 #include "includes.h"
+#include <queue>
 using namespace std;
 
 //FUNCIONES QUE SE VAYAN A USAR DE MANERA REPETIDA
 
 //GENERAR NUMEROS ALEATORIOS
 int NumRandom(int, int);
-void generarComponente();
+void producirComponente();
 
 //INVENTARIO
-extern gpu inventarioGpu[10];
-extern cpu inventarioCpu[10];
-extern psu inventarioPsu[10];
-extern ram inventarioRam[10];
-extern motherboard inventarioMotherboard[10];
-extern ssd inventarioSsd[10];
-extern disipador inventarioDisipador[10];
-extern refrigeracionLiquida inventarioRefrigeracionLiquida[10];
-extern gabinete inventarioGabinete[10];
-
-extern int i; //INDICE DEL ARREGLO DE COMPONENTES
+extern queue <gpu> inventarioGpu;
+extern queue <cpu> inventarioCpu;
+extern queue <psu> inventarioPsu;
+extern queue <ram> inventarioRam;
+extern queue <motherboard> inventarioMotherboard;
+extern queue <ssd> inventarioSsd;
+extern queue <disipador> inventarioDisipador;
+extern queue <refrigeracionLiquida> inventarioRefrigeracionLiquida;
+extern queue <gabinete> inventarioGabinete;
 
 #endif

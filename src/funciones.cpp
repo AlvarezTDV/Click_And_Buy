@@ -2,6 +2,7 @@
 #include "../include/includes.h"
 
 #include <random>
+#include <queue>
 using namespace std;
 
 //FUNCIONES QUE SE VAYAN A USAR DE MANERA REPETIDA
@@ -15,81 +16,72 @@ int NumRandom(int min, int max) {
 }
 
 //INVENTARIO
-gpu inventarioGpu[10];
-cpu inventarioCpu[10];
-psu inventarioPsu[10];
-ram inventarioRam[10];
-motherboard inventarioMotherboard[10];
-ssd inventarioSsd[10];
-disipador inventarioDisipador[10];
-refrigeracionLiquida inventarioRefrigeracionLiquida[10];
-gabinete inventarioGabinete[10];
+queue <gpu> inventarioGpu;
+queue <cpu> inventarioCpu;
+queue <psu> inventarioPsu;
+queue <ram> inventarioRam;
+queue <motherboard> inventarioMotherboard;
+queue <ssd> inventarioSsd;
+queue <disipador> inventarioDisipador;
+queue <refrigeracionLiquida> inventarioRefrigeracionLiquida;
+queue <gabinete> inventarioGabinete;
 
 //FUNCION PARA GENERAR COMPONENTES ALEATORIOS
-void generarComponente() {
-	int num = NumRandom(9, 9);
+void producirComponente() {
+	int num = NumRandom(1, 1);
 	switch (num) {
 		case 1: {
 			gpu gpuTemp;
 			gpuTemp.generarTarjeta();
-			inventarioGpu[i] = gpuTemp;
-			i++;
+			inventarioGpu.push(gpuTemp);
 			break;
 		}
 		case 2: {
 			cpu cpuTemp;
 			cpuTemp.generarProcesador();
-			inventarioCpu[i] = cpuTemp;
-			i++;
+			inventarioCpu.push(cpuTemp);
 			break;
 		}
 		case 3: {
 			psu psuTemp;
 			psuTemp.generarFuente();
-			inventarioPsu[i] = psuTemp;
-			i++;
+			inventarioPsu.push(psuTemp);
 			break;
 		}
 		case 4: {
 			ram ramTemp;
 			ramTemp.generarRam();
-			inventarioRam[i] = ramTemp;
-			i++;
+			inventarioRam.push(ramTemp);
 			break;
 		}
 		case 5: {
 			motherboard motherboardTemp;
 			motherboardTemp.generarMotherboard();
-			inventarioMotherboard[i] = motherboardTemp;
-			i++;
+			inventarioMotherboard.push(motherboardTemp);
 			break;
 		}
 		case 6: {
 			ssd ssdTemp;
 			ssdTemp.generarSsd();
-			inventarioSsd[i] = ssdTemp;
-			i++;
+			inventarioSsd.push(ssdTemp);
 			break;
 		}
 		case 7: {
 			disipador disipadorTemp;
 			disipadorTemp.generarDisipador();
-			inventarioDisipador[i] = disipadorTemp;
-			i++;
+			inventarioDisipador.push(disipadorTemp);
 			break;
 		}
 		case 8: {
 			refrigeracionLiquida refrigeracionLiquidaTemp;
 			refrigeracionLiquidaTemp.generarRefrigeracionLiquida();
-			inventarioRefrigeracionLiquida[i] = refrigeracionLiquidaTemp;
-			i++;
+			inventarioRefrigeracionLiquida.push(refrigeracionLiquidaTemp);
 			break;
 		}
 		case 9: {
 			gabinete gabineteTemp;
 			gabineteTemp.generarGabinete();
-			inventarioGabinete[i] = gabineteTemp;
-			i++;
+			inventarioGabinete.push(gabineteTemp);
 			break;
 		}
 	}
