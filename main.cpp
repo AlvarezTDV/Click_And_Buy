@@ -131,5 +131,14 @@ int main() {
 	cout << inventarioPsu[0].mostrarCertificacion() << endl;
 	cout << inventarioPsu[0].mostrarSiEsModular() << endl << endl;
 	
+	cout << "Ram generada" << endl;
+	cout << inventarioRam[0].mostrarNombre() << endl;
+	cout << inventarioRam[0].mostrarMarca() << endl;
+	cout << inventarioRam[0].mostrarPrecio() << endl;
+	cout << inventarioRam[0].mostrarTipo() << endl;
+	cout << inventarioRam[0].mostrarCapacidad() << endl;
+	cout << inventarioRam[0].mostrarVelocidad() << endl;
+	cout << inventarioRam[0].mostrarLatencia() << endl << endl;
+	
 	return 0;
 }

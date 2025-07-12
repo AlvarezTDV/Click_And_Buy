@@ -14,6 +14,7 @@ void generarComponente();
 extern gpu inventarioGpu[10];
 extern cpu inventarioCpu[10];
 extern psu inventarioPsu[10];
+extern ram inventarioRam[10];
 extern int i; //INDICE DEL ARREGLO DE COMPONENTES
 
 #endif
