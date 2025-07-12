@@ -19,6 +19,7 @@ extern motherboard inventarioMotherboard[10];
 extern ssd inventarioSsd[10];
 extern disipador inventarioDisipador[10];
 extern refrigeracionLiquida inventarioRefrigeracionLiquida[10];
+extern gabinete inventarioGabinete[10];
 
 extern int i; //INDICE DEL ARREGLO DE COMPONENTES
 
