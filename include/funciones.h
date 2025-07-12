@@ -10,6 +10,7 @@ using namespace std;
 //GENERAR NUMEROS ALEATORIOS
 int NumRandom(int, int);
 void producirComponente();
+void consumirComponente();
 
 //INVENTARIO
 extern queue <gpu> inventarioGpu;
