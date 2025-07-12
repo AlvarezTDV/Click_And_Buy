@@ -140,5 +140,14 @@ int main() {
 	cout << inventarioRam[0].mostrarVelocidad() << endl;
 	cout << inventarioRam[0].mostrarLatencia() << endl << endl;
 	
+	cout << "Mother generada" << endl;
+	cout << inventarioMotherboard[0].mostrarNombre() << endl;
+	cout << inventarioMotherboard[0].mostrarMarca() << endl;
+	cout << inventarioMotherboard[0].mostrarPrecio() << endl;
+	cout << inventarioMotherboard[0].mostrarFormato() << endl;
+	cout << inventarioMotherboard[0].mostrarChipset() << endl;
+	cout << inventarioMotherboard[0].mostrarSocketCpu() << endl;
+	cout << inventarioMotherboard[0].mostrarSlotsRam() << endl << endl;
+	
 	return 0;
 }

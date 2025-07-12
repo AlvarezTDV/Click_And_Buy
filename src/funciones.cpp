@@ -19,10 +19,11 @@ gpu inventarioGpu[10];
 cpu inventarioCpu[10];
 psu inventarioPsu[10];
 ram inventarioRam[10];
+motherboard inventarioMotherboard[10];
 
 //FUNCION PARA GENERAR COMPONENTES ALEATORIOS
 void generarComponente() {
-	int num = NumRandom(4, 4);
+	int num = NumRandom(5, 5);
 	switch (num) {
 		case 1: {
 			gpu gpuTemp;
@@ -52,9 +53,14 @@ void generarComponente() {
 			i++;
 			break;
 		}
-		/*case 5:
+		case 5: {
+			motherboard motherboardTemp;
+			motherboardTemp.generarMotherboard();
+			inventarioMotherboard[i] = motherboardTemp;
+			i++;
 			break;
-		case 6:
+		}
+		/*case 6:
 			break;
 		case 7:
 			break;
