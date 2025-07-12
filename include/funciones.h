@@ -16,6 +16,7 @@ extern cpu inventarioCpu[10];
 extern psu inventarioPsu[10];
 extern ram inventarioRam[10];
 extern motherboard inventarioMotherboard[10];
+extern ssd inventarioSsd[10];
 
 extern int i; //INDICE DEL ARREGLO DE COMPONENTES
 

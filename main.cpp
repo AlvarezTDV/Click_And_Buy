@@ -149,5 +149,14 @@ int main() {
 	cout << inventarioMotherboard[0].mostrarSocketCpu() << endl;
 	cout << inventarioMotherboard[0].mostrarSlotsRam() << endl << endl;
 	
+	cout << "SSD generada" << endl;
+	cout << inventarioSsd[0].mostrarNombre() << endl;
+	cout << inventarioSsd[0].mostrarMarca() << endl;
+	cout << inventarioSsd[0].mostrarPrecio() << endl;
+	cout << inventarioSsd[0].mostrarCapacidad() << endl;
+	cout << inventarioSsd[0].mostrarVelocidadLectura() << endl;
+	cout << inventarioSsd[0].mostrarVelocidadEscritura() << endl;
+	cout << inventarioSsd[0].mostrarPcie() << endl << endl;
+	
 	return 0;
 }
