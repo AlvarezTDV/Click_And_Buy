@@ -1,209 +1,447 @@
 #include "include/includes.h"
 
+#include <windows.h>
 #include <iostream>
 #include <thread>
 #include <semaphore.h>
+#include <queue>
 using namespace std;
 
 int cliente = 1;
 
 int main() {
-	//SE INICIALIZAN LOS SEMAFOROS
-	inicializarSemaforos();
-	
-	//PRODUCTORES
-	thread t1(productor, 3, 1);
-	thread t2(productor, 3, 2);
-	thread t3(productor, 3, 3);
-	
-	//CONSUMIDORES
-	thread t4(consumidor, 3, ref(cliente));
-	thread t5(consumidor, 3, ref(cliente));
-	thread t6(consumidor, 3, ref(cliente));
-	
-	t1.join();
-	t2.join();
-	t3.join();
+	SetConsoleOutputCP(CP_UTF8);
+	int opcion, cantHilo;
+	do {
+		system("cls");
+		cout << endl << endl;
+		cout << tab << tab << tab << "   █████████  █████       █████   █████████  █████   ████                          " << endl;
+		cout << tab << tab << tab << "  ███░░░░░███░░███       ░░███   ███░░░░░███░░███   ███░                           " << endl;
+		cout << tab << tab << tab << " ███     ░░░  ░███        ░███  ███     ░░░  ░███  ███                             " << endl;
+		cout << tab << tab << tab << "░███          ░███        ░███ ░███          ░███████                              " << endl;
+		cout << tab << tab << tab << "░███          ░███        ░███ ░███          ░███░░███                             " << endl;
+		cout << tab << tab << tab << "░░███     ███ ░███      █ ░███ ░░███     ███ ░███ ░░███                            " << endl;
+		cout << tab << tab << tab << " ░░█████████  ███████████ █████ ░░█████████  █████ ░░████                          " << endl;
+		cout << tab << tab << tab << "  ░░░░░░░░░  ░░░░░░░░░░░ ░░░░░   ░░░░░░░░░  ░░░░░   ░░░░                           " << endl;
+		cout << tab << tab << tab << "                                                                                  " << endl;
+		cout << tab << tab << "                                                                                  " << endl;
+		cout << tab << tab << "                                                                                  " << endl;
+		cout << tab << tab << "   █████████   ██████   █████ ██████████      ███████████  █████  █████ █████ █████" << endl;
+		cout << tab << tab << "  ███░░░░░███ ░░██████ ░░███ ░░███░░░░███    ░░███░░░░░███░░███  ░░███ ░░███ ░░███ " << endl;
+		cout << tab << tab << " ░███    ░███  ░███░███ ░███  ░███   ░░███    ░███    ░███ ░███   ░███  ░░███ ███  " << endl;
+		cout << tab << tab << " ░███████████  ░███░░███░███  ░███    ░███    ░██████████  ░███   ░███   ░░█████   " << endl;
+		cout << tab << tab << " ░███░░░░░███  ░███ ░░██████  ░███    ░███    ░███░░░░░███ ░███   ░███    ░░███    " << endl;
+		cout << tab << tab << " ░███    ░███  ░███  ░░█████  ░███    ███     ░███    ░███ ░███   ░███     ░███    " << endl;
+		cout << tab << tab << " █████   █████ █████  ░░█████ ██████████      ███████████  ░░████████      █████   " << endl;
+		cout << tab << tab << "░░░░░   ░░░░░ ░░░░░    ░░░░░ ░░░░░░░░░░      ░░░░░░░░░░░    ░░░░░░░░      ░░░░░    " << endl << endl;
+		cout << tab << tab << tab << tab << "[1] SIMULAR (3 PRODUCTORES Y 3 CONSUMIDORES)" << endl;
+		cout << tab << tab << tab << tab << "[2] VER STOCK" << endl;
+		cout << tab << tab << tab << tab << "[3] VER VENTAS" << endl;
+		cout << tab << tab << tab << tab << "[4] SALIR DEL PROGRAMA" << endl << endl;
+		cout << tab << tab << tab << tab << tab << tab << "OPCION: ";
+		cin >> opcion;
+		
+		switch (opcion) {
+			case 1: {
+				system("cls");
+				cout << tab << tab << "███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗  ██████╗██╗ ██████╗ ███╗   ██╗" << endl;
+				cout << tab << tab << "██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║" << endl;
+				cout << tab << tab << "███████╗██║██╔████╔██║██║   ██║██║     ███████║██║     ██║██║   ██║██╔██╗ ██║" << endl;
+				cout << tab << tab << "╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║██║     ██║██║   ██║██║╚██╗██║" << endl;
+				cout << tab << tab << "███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║╚██████╗██║╚██████╔╝██║ ╚████║" << endl;
+				cout << tab << tab << "╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝" << endl;
+				
+				//REPETICIONES QUE TENDRA CADA HILO
+				cout << endl;
+				cout << tab << tab << tab << tab << "CUANTAS REPETICIONES HARA CADA HILO?: ";
+				cin >> cantHilo;
+				cout << endl;
+				
+				//SE INICIALIZAN LOS SEMAFOROS
+				inicializarSemaforos();
+				
+				//PRODUCTORES
+				thread t1(productor, cantHilo, 1);
+				thread t2(productor, cantHilo, 2);
+				thread t3(productor, cantHilo, 3);
+				
+				//CONSUMIDORES
+				thread t4(consumidor, cantHilo, ref(cliente));
+				thread t5(consumidor, cantHilo, ref(cliente));
+				thread t6(consumidor, cantHilo, ref(cliente));
+				
+				t1.join();
+				t2.join();
+				t3.join();
+			
+				t4.join();
+				t5.join();
+				t6.join();
+				
+				system("pause");
+				break;
+			}
+			case 2: {
+				system("cls");
+				cout << tab << tab << tab << tab << "███████╗████████╗ ██████╗  ██████╗██╗  ██╗" << endl;
+				cout << tab << tab << tab << tab << "██╔════╝╚══██╔══╝██╔═══██╗██╔════╝██║ ██╔╝" << endl;
+				cout << tab << tab << tab << tab << "███████╗   ██║   ██║   ██║██║     █████╔╝ " << endl;
+				cout << tab << tab << tab << tab << "╚════██║   ██║   ██║   ██║██║     ██╔═██╗ " << endl;
+				cout << tab << tab << tab << tab << "███████║   ██║   ╚██████╔╝╚██████╗██║  ██╗" << endl;
+				cout << tab << tab << tab << tab << "╚══════╝   ╚═╝    ╚═════╝  ╚═════╝╚═╝  ╚═╝" << endl << endl;
+				
+				cout << tab << tab << "░▀█▀░█▀█░█▀▄░▀▀█░█▀▀░▀█▀░█▀█░█▀▀░░░█▀▀░█▀▄░█▀█░█▀▀░▀█▀░█▀▀░█▀█░█▀▀" << endl;
+				cout << tab << tab << "░░█░░█▀█░█▀▄░░░█░█▀▀░░█░░█▀█░▀▀█░░░█░█░█▀▄░█▀█░█▀▀░░█░░█░░░█▀█░▀▀█" << endl;
+				cout << tab << tab << "░░▀░░▀░▀░▀░▀░▀▀░░▀▀▀░░▀░░▀░▀░▀▀▀░░░▀▀▀░▀░▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀" << endl << endl;
+				queue <gpu> temp1 = inventarioGpu;
+				int contador1 = 1;
+				while (temp1.empty() != true) {
+					cout << tab << tab << "TARJETA [" << contador1 << "]:" << endl;
+					cout << tab << tab << "NOMBRE: " << temp1.front().mostrarNombre() << endl;
+					cout << tab << tab << "MARCA: " << temp1.front().mostrarMarca() << endl;
+					cout << tab << tab << "PRECIO: " << temp1.front().mostrarPrecio() << endl;
+					cout << tab << tab << "NUCLEOS: " << temp1.front().mostrarNucleos() << endl;
+					cout << tab << tab << "VENTILADORES: " << temp1.front().mostrarVentiladores() << endl;
+					cout << tab << tab << "VRAM: " << temp1.front().mostrarVram() << endl;
+					cout << tab << tab << "GENERACION: " << temp1.front().mostrarGeneracion() << endl << endl;
+					temp1.pop();
+					contador1++;
+				}
+				
+				cout << tab << tab << "░█▀█░█▀▄░█▀█░█▀▀░█▀▀░█▀▀░█▀█░█▀▄░█▀█░█▀▄░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█▀▀░█▀▄░█░█░█░░░█▀▀░▀▀█░█▀█░█░█░█░█░█▀▄░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀" << endl << endl;
+				queue<cpu> temp2 = inventarioCpu;
+				int contador2 = 1;
+				while (temp2.empty() != true) {
+				    cout << tab << tab << "PROCESADOR [" << contador2 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp2.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp2.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp2.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "NUCLEOS: " << temp2.front().mostrarNucleos() << endl;
+				    cout << tab << tab << "HILOS: " << temp2.front().mostrarHilos() << endl;
+				    cout << tab << tab << "FRECUENCIA: " << temp2.front().mostrarFrecuencia() << endl;
+				    cout << tab << tab << "GENERACION: " << temp2.front().mostrarGeneracion() << endl;
+				    cout << tab << tab << "SOCKET: " << temp2.front().mostrarSocket() << endl << endl;
+				    temp2.pop();
+				    contador2++;
+				}
+				
+				cout << tab << tab << "░█▀▀░█░█░█▀▀░█▀█░▀█▀░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█▀▀░█░█░█▀▀░█░█░░█░░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀" << endl << endl;
+				queue<psu> temp3 = inventarioPsu;
+				int contador3 = 1;
+				while (temp3.empty() != true) {
+				    cout << tab << tab << "FUENTE [" << contador3 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp3.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp3.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp3.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "WATTS: " << temp3.front().mostrarWatts() << endl;
+				    cout << tab << tab << "TIENE CERTIFICACION: " << temp3.front().mostrarSiTieneCertificacion() << endl;
+				    cout << tab << tab << "CERTIFICACION: " << temp3.front().mostrarCertificacion() << endl;
+				    cout << tab << tab << "ES MODULAR: " << temp3.front().mostrarSiEsModular() << endl << endl;
+				    temp3.pop();
+				    contador3++;
+				}
+				
+				cout << tab << tab << "░█▀▄░█▀█░█▄█" << endl;
+				cout << tab << tab << "░█▀▄░█▀█░█░█" << endl;
+				cout << tab << tab << "░▀░▀░▀░▀░▀░▀" << endl << endl;
+				queue<ram> temp4 = inventarioRam;
+				int contador4 = 1;
+				while (temp4.empty() != true) {
+				    cout << tab << tab << "RAM [" << contador4 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp4.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp4.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp4.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "TIPO: " << temp4.front().mostrarTipo() << endl;
+				    cout << tab << tab << "CAPACIDAD: " << temp4.front().mostrarCapacidad() << endl;
+				    cout << tab << tab << "VELOCIDAD: " << temp4.front().mostrarVelocidad() << endl;
+				    cout << tab << tab << "LATENCIA: " << temp4.front().mostrarLatencia() << endl << endl;
+				    temp4.pop();
+				    contador4++;
+				}
+				
+				cout << tab << tab << "░▀█▀░█▀█░█▀▄░▀▀█░█▀▀░▀█▀░█▀█░█▀▀░░░█▄█░█▀█░█▀▄░█▀▄░█▀▀" << endl;
+				cout << tab << tab << "░░█░░█▀█░█▀▄░░░█░█▀▀░░█░░█▀█░▀▀█░░░█░█░█▀█░█░█░█▀▄░█▀▀" << endl;
+				cout << tab << tab << "░░▀░░▀░▀░▀░▀░▀▀░░▀▀▀░░▀░░▀░▀░▀▀▀░░░▀░▀░▀░▀░▀▀░░▀░▀░▀▀▀" << endl << endl;
+				queue<motherboard> temp5 = inventarioMotherboard;
+				int contador5 = 1;
+				while (temp5.empty() != true) {
+				    cout << tab << tab << "MOTHERBOARD [" << contador5 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp5.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp5.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp5.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "FORMATO: " << temp5.front().mostrarFormato() << endl;
+				    cout << tab << tab << "CHIPSET: " << temp5.front().mostrarChipset() << endl;
+				    cout << tab << tab << "SOCKET CPU: " << temp5.front().mostrarSocketCpu() << endl;
+				    cout << tab << tab << "SLOTS RAM: " << temp5.front().mostrarSlotsRam() << endl << endl;
+				    temp5.pop();
+				    contador5++;
+				}
+				
+				cout << tab << tab << "░█▀▀░█▀▀░█▀▄" << endl;
+				cout << tab << tab << "░▀▀█░▀▀█░█░█" << endl;
+				cout << tab << tab << "░▀▀▀░▀▀▀░▀▀░" << endl << endl;
+				queue<ssd> temp6 = inventarioSsd;
+				int contador6 = 1;
+				while (temp6.empty() != true) {
+				    cout << tab << tab << "SSD [" << contador6 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp6.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp6.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp6.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "CAPACIDAD: " << temp6.front().mostrarCapacidad() << endl;
+				    cout << tab << tab << "VELOCIDAD LECTURA: " << temp6.front().mostrarVelocidadLectura() << endl;
+				    cout << tab << tab << "VELOCIDAD ESCRITURA: " << temp6.front().mostrarVelocidadEscritura() << endl;
+				    cout << tab << tab << "PCIE: " << temp6.front().mostrarPcie() << endl << endl;
+				    temp6.pop();
+				    contador6++;
+				}
+				
+				cout << tab << tab << "░█▀▄░▀█▀░█▀▀░▀█▀░█▀█░█▀█░█▀▄░█▀█░█▀▄░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█░█░░█░░▀▀█░░█░░█▀▀░█▀█░█░█░█░█░█▀▄░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀" << endl << endl;
+				queue<disipador> temp7 = inventarioDisipador;
+				int contador7 = 1;
+				while (temp7.empty() != true) {
+				    cout << tab << tab << "DISIPADOR [" << contador7 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp7.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp7.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp7.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "COMPATIBILIDAD SOCKET: " << temp7.front().mostrarCompatibilidadSocket() << endl;
+				    cout << tab << tab << "HEAT PIPES: " << temp7.front().mostrarHeatPipes() << endl << endl;
+				    temp7.pop();
+				    contador7++;
+				}
+				
+				cout << tab << tab << "░█▀▄░█▀▀░█▀▀░█▀▄░▀█▀░█▀▀░█▀▀░█▀▄░█▀█░█▀▀░▀█▀░█▀█░█▀█░█▀▀░█▀▀░░░█░░░░░" << endl;
+				cout << tab << tab << "░█▀▄░█▀▀░█▀▀░█▀▄░░█░░█░█░█▀▀░█▀▄░█▀█░█░░░░█░░█░█░█░█░█▀▀░▀▀█░░░█░░░░░" << endl;
+				cout << tab << tab << "░▀░▀░▀▀▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░░░▀▀▀░▀░" << endl << endl;
+				queue<refrigeracionLiquida> temp8 = inventarioRefrigeracionLiquida;
+				int contador8 = 1;
+				while (temp8.empty() != true) {
+				    cout << tab << tab << "REFRIGERACION LIQUIDA [" << contador8 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp8.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp8.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp8.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "COMPATIBILIDAD SOCKET: " << temp8.front().mostrarCompatibilidadSocket() << endl;
+				    cout << tab << tab << "NUM VENTILADORES: " << temp8.front().mostrarNumVentiladores() << endl << endl;
+				    temp8.pop();
+				    contador8++;
+				}
+				
+				cout << tab << tab << "░█▀▀░█▀█░█▀▄░▀█▀░█▀█░█▀▀░▀█▀░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█░█░█▀█░█▀▄░░█░░█░█░█▀▀░░█░░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀" << endl << endl;
+				queue<gabinete> temp9 = inventarioGabinete;
+				int contador9 = 1;
+				while (temp9.empty() != true) {
+				    cout << tab << tab << "GABINETE [" << contador9 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp9.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp9.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp9.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "TAMANIO: " << temp9.front().mostrarTamanio() << endl;
+				    cout << tab << tab << "MATERIAL: " << temp9.front().mostrarMaterial() << endl << endl;
+				    temp9.pop();
+				    contador9++;
+				}
+				system("pause");
+				break;
+			}
+			case 3: {
+				system("cls");
+				cout << tab << tab << tab << "██╗   ██╗███████╗███╗   ██╗████████╗ █████╗ ███████╗" << endl;
+				cout << tab << tab << tab << "██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝" << endl;
+				cout << tab << tab << tab << "██║   ██║█████╗  ██╔██╗ ██║   ██║   ███████║███████╗" << endl;
+				cout << tab << tab << tab << "╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██╔══██║╚════██║" << endl;
+				cout << tab << tab << tab << " ╚████╔╝ ███████╗██║ ╚████║   ██║   ██║  ██║███████║" << endl;
+				cout << tab << tab << tab << "  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝" << endl << endl;
+				
+				cout << tab << tab << "░▀█▀░█▀█░█▀▄░▀▀█░█▀▀░▀█▀░█▀█░█▀▀░░░█▀▀░█▀▄░█▀█░█▀▀░▀█▀░█▀▀░█▀█░█▀▀" << endl;
+				cout << tab << tab << "░░█░░█▀█░█▀▄░░░█░█▀▀░░█░░█▀█░▀▀█░░░█░█░█▀▄░█▀█░█▀▀░░█░░█░░░█▀█░▀▀█" << endl;
+				cout << tab << tab << "░░▀░░▀░▀░▀░▀░▀▀░░▀▀▀░░▀░░▀░▀░▀▀▀░░░▀▀▀░▀░▀░▀░▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀" << endl << endl;
+				queue <gpu> temp1 = ventasGpu;
+				int contador1 = 1;
+				while (temp1.empty() != true) {
+				    cout << tab << tab << "TARJETA [" << contador1 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp1.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp1.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp1.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "NUCLEOS: " << temp1.front().mostrarNucleos() << endl;
+				    cout << tab << tab << "VENTILADORES: " << temp1.front().mostrarVentiladores() << endl;
+				    cout << tab << tab << "VRAM: " << temp1.front().mostrarVram() << endl;
+				    cout << tab << tab << "GENERACION: " << temp1.front().mostrarGeneracion() << endl << endl;
+				    temp1.pop();
+				    contador1++;
+				}
+				
+				cout << tab << tab << "░█▀█░█▀▄░█▀█░█▀▀░█▀▀░█▀▀░█▀█░█▀▄░█▀█░█▀▄░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█▀▀░█▀▄░█░█░█░░░█▀▀░▀▀█░█▀█░█░█░█░█░█▀▄░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀" << endl << endl;
+				queue <cpu> temp2 = ventasCpu;
+				int contador2 = 1;
+				while (temp2.empty() != true) {
+				    cout << tab << tab << "PROCESADOR [" << contador2 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp2.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp2.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp2.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "NUCLEOS: " << temp2.front().mostrarNucleos() << endl;
+				    cout << tab << tab << "HILOS: " << temp2.front().mostrarHilos() << endl;
+				    cout << tab << tab << "FRECUENCIA: " << temp2.front().mostrarFrecuencia() << endl;
+				    cout << tab << tab << "GENERACION: " << temp2.front().mostrarGeneracion() << endl;
+				    cout << tab << tab << "SOCKET: " << temp2.front().mostrarSocket() << endl << endl;
+				    temp2.pop();
+				    contador2++;
+				}
+				
+				cout << tab << tab << "░█▀▀░█░█░█▀▀░█▀█░▀█▀░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█▀▀░█░█░█▀▀░█░█░░█░░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀░░░▀▀▀░▀▀▀░▀░▀░░▀░░▀▀▀░▀▀▀" << endl << endl;
+				queue <psu> temp3 = ventasPsu;
+				int contador3 = 1;
+				while (temp3.empty() != true) {
+				    cout << tab << tab << "FUENTE [" << contador3 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp3.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp3.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp3.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "WATTS: " << temp3.front().mostrarWatts() << endl;
+				    cout << tab << tab << "TIENE CERTIFICACION: " << temp3.front().mostrarSiTieneCertificacion() << endl;
+				    cout << tab << tab << "CERTIFICACION: " << temp3.front().mostrarCertificacion() << endl;
+				    cout << tab << tab << "ES MODULAR: " << temp3.front().mostrarSiEsModular() << endl << endl;
+				    temp3.pop();
+				    contador3++;
+				}
+				
+				cout << tab << tab << "░█▀▄░█▀█░█▄█" << endl;
+				cout << tab << tab << "░█▀▄░█▀█░█░█" << endl;
+				cout << tab << tab << "░▀░▀░▀░▀░▀░▀" << endl << endl;
+				queue <ram> temp4 = ventasRam;
+				int contador4 = 1;
+				while (temp4.empty() != true) {
+				    cout << tab << tab << "MEMORIA RAM [" << contador4 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp4.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp4.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp4.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "TIPO: " << temp4.front().mostrarTipo() << endl;
+				    cout << tab << tab << "CAPACIDAD: " << temp4.front().mostrarCapacidad() << endl;
+				    cout << tab << tab << "VELOCIDAD: " << temp4.front().mostrarVelocidad() << endl;
+				    cout << tab << tab << "LATENCIA: " << temp4.front().mostrarLatencia() << endl << endl;
+				    temp4.pop();
+				    contador4++;
+				}
+				
+				cout << tab << tab << "░▀█▀░█▀█░█▀▄░▀▀█░█▀▀░▀█▀░█▀█░█▀▀░░░█▄█░█▀█░█▀▄░█▀▄░█▀▀" << endl;
+				cout << tab << tab << "░░█░░█▀█░█▀▄░░░█░█▀▀░░█░░█▀█░▀▀█░░░█░█░█▀█░█░█░█▀▄░█▀▀" << endl;
+				cout << tab << tab << "░░▀░░▀░▀░▀░▀░▀▀░░▀▀▀░░▀░░▀░▀░▀▀▀░░░▀░▀░▀░▀░▀▀░░▀░▀░▀▀▀" << endl << endl;
+				queue <motherboard> temp5 = ventasMotherboard;
+				int contador5 = 1;
+				while (temp5.empty() != true) {
+				    cout << tab << tab << "PLACA MADRE [" << contador5 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp5.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp5.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp5.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "FORMATO: " << temp5.front().mostrarFormato() << endl;
+				    cout << tab << tab << "CHIPSET: " << temp5.front().mostrarChipset() << endl;
+				    cout << tab << tab << "SOCKET CPU: " << temp5.front().mostrarSocketCpu() << endl;
+				    cout << tab << tab << "SLOTS RAM: " << temp5.front().mostrarSlotsRam() << endl << endl;
+				    temp5.pop();
+				    contador5++;
+				}
+				
+				cout << tab << tab << "░█▀▀░█▀▀░█▀▄" << endl;
+				cout << tab << tab << "░▀▀█░▀▀█░█░█" << endl;
+				cout << tab << tab << "░▀▀▀░▀▀▀░▀▀░" << endl << endl;
+				queue <ssd> temp6 = ventasSsd;
+				int contador6 = 1;
+				while (temp6.empty() != true) {
+				    cout << tab << tab << "DISCO SSD [" << contador6 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp6.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp6.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp6.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "CAPACIDAD: " << temp6.front().mostrarCapacidad() << endl;
+				    cout << tab << tab << "VELOCIDAD LECTURA: " << temp6.front().mostrarVelocidadLectura() << endl;
+				    cout << tab << tab << "VELOCIDAD ESCRITURA: " << temp6.front().mostrarVelocidadEscritura() << endl;
+				    cout << tab << tab << "PCIE: " << temp6.front().mostrarPcie() << endl << endl;
+				    temp6.pop();
+				    contador6++;
+				}
+				
+				cout << tab << tab << "░█▀▄░▀█▀░█▀▀░▀█▀░█▀█░█▀█░█▀▄░█▀█░█▀▄░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█░█░░█░░▀▀█░░█░░█▀▀░█▀█░█░█░█░█░█▀▄░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀░░░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀" << endl << endl;
+				queue <disipador> temp7 = ventasDisipador;
+				int contador7 = 1;
+				while (temp7.empty() != true) {
+				    cout << tab << tab << "DISIPADOR [" << contador7 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp7.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp7.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp7.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "COMPATIBILIDAD SOCKET: " << temp7.front().mostrarCompatibilidadSocket() << endl;
+				    cout << tab << tab << "HEAT PIPES: " << temp7.front().mostrarHeatPipes() << endl << endl;
+				    temp7.pop();
+				    contador7++;
+				}
+				
+				cout << tab << tab << "░█▀▄░█▀▀░█▀▀░█▀▄░▀█▀░█▀▀░█▀▀░█▀▄░█▀█░█▀▀░▀█▀░█▀█░█▀█░█▀▀░█▀▀░░░█░░░░░" << endl;
+				cout << tab << tab << "░█▀▄░█▀▀░█▀▀░█▀▄░░█░░█░█░█▀▀░█▀▄░█▀█░█░░░░█░░█░█░█░█░█▀▀░▀▀█░░░█░░░░░" << endl;
+				cout << tab << tab << "░▀░▀░▀▀▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░░░▀▀▀░▀░" << endl << endl;
+				queue <refrigeracionLiquida> temp8 = ventasRefrigeracionLiquida;
+				int contador8 = 1;
+				while (temp8.empty() != true) {
+				    cout << tab << tab << "REFRIGERACION LIQUIDA [" << contador8 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp8.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp8.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp8.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "COMPATIBILIDAD SOCKET: " << temp8.front().mostrarCompatibilidadSocket() << endl;
+				    cout << tab << tab << "NUM VENTILADORES: " << temp8.front().mostrarNumVentiladores() << endl << endl;
+				    temp8.pop();
+				    contador8++;
+				}
+				
+				cout << tab << tab << "░█▀▀░█▀█░█▀▄░▀█▀░█▀█░█▀▀░▀█▀░█▀▀░█▀▀" << endl;
+				cout << tab << tab << "░█░█░█▀█░█▀▄░░█░░█░█░█▀▀░░█░░█▀▀░▀▀█" << endl;
+				cout << tab << tab << "░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀" << endl << endl;
+				queue <gabinete> temp9 = ventasGabinete;
+				int contador9 = 1;
+				while (temp9.empty() != true) {
+				    cout << tab << tab << "GABINETE [" << contador9 << "]:" << endl;
+				    cout << tab << tab << "NOMBRE: " << temp9.front().mostrarNombre() << endl;
+				    cout << tab << tab << "MARCA: " << temp9.front().mostrarMarca() << endl;
+				    cout << tab << tab << "PRECIO: " << temp9.front().mostrarPrecio() << endl;
+				    cout << tab << tab << "TAMANIO: " << temp9.front().mostrarTamanio() << endl;
+				    cout << tab << tab << "MATERIAL: " << temp9.front().mostrarMaterial() << endl << endl;
+				    temp9.pop();
+				    contador9++;
+				}
+				system("pause");
+				break;
+			}
+			case 4: {
+				system("cls");
+				cout << endl << endl << endl;
+				cout << tab << tab << " ██████╗███████╗██████╗ ██████╗  █████╗ ███╗   ██╗██████╗  ██████╗          " << endl;
+				cout << tab << tab << "██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗████╗  ██║██╔══██╗██╔═══██╗         " << endl;
+				cout << tab << tab << "██║     █████╗  ██████╔╝██████╔╝███████║██╔██╗ ██║██║  ██║██║   ██║         " << endl;
+				cout << tab << tab << "██║     ██╔══╝  ██╔══██╗██╔══██╗██╔══██║██║╚██╗██║██║  ██║██║   ██║         " << endl;
+				cout << tab << tab << "╚██████╗███████╗██║  ██║██║  ██║██║  ██║██║ ╚████║██████╔╝╚██████╔╝██╗██╗██╗" << endl;
+				cout << tab << tab << " ╚═════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═╝╚═╝╚═╝" << endl << endl;
+				break;
+			}
+			default: {
+				system("cls");
+				cout << endl << endl << endl;
+				cout << " ██████╗ ██████╗  ██████╗██╗ ██████╗ ███╗   ██╗    ██╗███╗   ██╗██╗   ██╗ █████╗ ██╗     ██╗██████╗  █████╗ " << endl;
+				cout << "██╔═══██╗██╔══██╗██╔════╝██║██╔═══██╗████╗  ██║    ██║████╗  ██║██║   ██║██╔══██╗██║     ██║██╔══██╗██╔══██╗" << endl;
+				cout << "██║   ██║██████╔╝██║     ██║██║   ██║██╔██╗ ██║    ██║██╔██╗ ██║██║   ██║███████║██║     ██║██║  ██║███████║" << endl;
+				cout << "██║   ██║██╔═══╝ ██║     ██║██║   ██║██║╚██╗██║    ██║██║╚██╗██║╚██╗ ██╔╝██╔══██║██║     ██║██║  ██║██╔══██║" << endl;
+				cout << "╚██████╔╝██║     ╚██████╗██║╚██████╔╝██║ ╚████║    ██║██║ ╚████║ ╚████╔╝ ██║  ██║███████╗██║██████╔╝██║  ██║" << endl;
+				cout << " ╚═════╝ ╚═╝      ╚═════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝    ╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚═╝╚═════╝ ╚═╝  ╚═╝" << endl << endl;
+				system("pause");
+				break;
+			}
+		}
+	} while ( opcion != 4);
 
-	t4.join();
-	t5.join();
-	t6.join();
-	
-	//PROBANDO SI SE GENERAN LOS COMPONENTES
-	/*gpu g1;
-	g1.generarTarjeta();
-	cout << "Tarjeta generada:" << endl;
-	cout << g1.mostrarNombre() << endl;
-	cout << g1.mostrarMarca() << endl;
-	cout << g1.mostrarPrecio() << endl;
-	cout << g1.mostrarNucleos() << endl;
-	cout << g1.mostrarVentiladores() << endl;
-	cout << g1.mostrarVram() << endl;
-	cout << g1.mostrarGeneracion() << endl << endl;
-	
-	cpu c1;
-	c1.generarProcesador();
-	cout << "Procesador generado:" << endl;
-	cout << c1.mostrarNombre() << endl;
-	cout << c1.mostrarMarca() << endl;
-	cout << c1.mostrarPrecio() << endl;
-	cout << c1.mostrarNucleos() << endl;
-	cout << c1.mostrarHilos() << endl;
-	cout << c1.mostrarFrecuencia() << endl;
-	cout << c1.mostrarGeneracion() << endl;
-	cout << c1.mostrarSocket() << endl << endl;
-	
-	psu p1;
-	p1.generarFuente();
-	cout << "Fuente generado" << endl;
-	cout << p1.mostrarNombre() << endl;
-	cout << p1.mostrarMarca() << endl;
-	cout << p1.mostrarPrecio() << endl;
-	cout << p1.mostrarWatts() << endl;
-	cout << p1.mostrarSiTieneCertificacion() << endl;
-	cout << p1.mostrarCertificacion() << endl;
-	cout << p1.mostrarSiEsModular() << endl << endl;
-	
-	ram r1;
-	r1.generarRam();
-	cout << "Ram generada" << endl;
-	cout << r1.mostrarNombre() << endl;
-	cout << r1.mostrarMarca() << endl;
-	cout << r1.mostrarPrecio() << endl;
-	cout << r1.mostrarTipo() << endl;
-	cout << r1.mostrarCapacidad() << endl;
-	cout << r1.mostrarVelocidad() << endl;
-	cout << r1.mostrarLatencia() << endl << endl;
-	
-	motherboard m1;
-	m1.generarMotherboard();
-	cout << "Mother generada" << endl;
-	cout << m1.mostrarNombre() << endl;
-	cout << m1.mostrarMarca() << endl;
-	cout << m1.mostrarPrecio() << endl;
-	cout << m1.mostrarFormato() << endl;
-	cout << m1.mostrarChipset() << endl;
-	cout << m1.mostrarSocketCpu() << endl;
-	cout << m1.mostrarSlotsRam() << endl << endl;
-	
-	ssd s1;
-	s1.generarSsd();
-	cout << "SSD generada" << endl;
-	cout << s1.mostrarNombre() << endl;
-	cout << s1.mostrarMarca() << endl;
-	cout << s1.mostrarPrecio() << endl;
-	cout << s1.mostrarCapacidad() << endl;
-	cout << s1.mostrarVelocidadLectura() << endl;
-	cout << s1.mostrarVelocidadEscritura() << endl;
-	cout << s1.mostrarPcie() << endl << endl;
-	
-	disipador d1;
-	d1.generarDisipador();
-	cout << "Disipador generado" << endl;
-	cout << d1.mostrarNombre() << endl;
-	cout << d1.mostrarMarca() << endl;
-	cout << d1.mostrarPrecio() << endl;
-	cout << d1.mostrarCompatibilidadSocket() << endl;
-	cout << d1.mostrarHeatPipes() << endl << endl;
-	
-	refrigeracionLiquida rl1;
-	rl1.generarRefrigeracionLiquida();
-	cout << "Refrigeracion liquida generado" << endl;
-	cout << rl1.mostrarNombre() << endl;
-	cout << rl1.mostrarMarca() << endl;
-	cout << rl1.mostrarPrecio() << endl;
-	cout << rl1.mostrarCompatibilidadSocket() << endl;
-	cout << rl1.mostrarNumVentiladores() << endl << endl;
-	
-	gabinete ga1;
-	ga1.generarGabinete();
-	cout << "Gabinete generado" << endl;
-	cout << ga1.mostrarNombre() << endl;
-	cout << ga1.mostrarMarca() << endl;
-	cout << ga1.mostrarPrecio() << endl;
-	cout << ga1.mostrarTamanio() << endl;
-	cout << ga1.mostrarMaterial() << endl << endl;*/
-	
-	/*
-	producirComponente();
-	consumirComponente();
-	*/
-	/*
-	cout << "Tarjeta generada:" << endl;
-	cout << inventarioGpu.front().mostrarNombre() << endl;
-	cout << inventarioGpu.front().mostrarMarca() << endl;
-	cout << inventarioGpu.front().mostrarPrecio() << endl;
-	cout << inventarioGpu.front().mostrarNucleos() << endl;
-	cout << inventarioGpu.front().mostrarVentiladores() << endl;
-	cout << inventarioGpu.front().mostrarVram() << endl;
-	cout << inventarioGpu.front().mostrarGeneracion() << endl << endl;
-	
-	cout << "Procesador generado:" << endl;
-	cout << inventarioCpu.front().mostrarNombre() << endl;
-	cout << inventarioCpu.front().mostrarMarca() << endl;
-	cout << inventarioCpu.front().mostrarPrecio() << endl;
-	cout << inventarioCpu.front().mostrarNucleos() << endl;
-	cout << inventarioCpu.front().mostrarHilos() << endl;
-	cout << inventarioCpu.front().mostrarFrecuencia() << endl;
-	cout << inventarioCpu.front().mostrarGeneracion() << endl;
-	cout << inventarioCpu.front().mostrarSocket() << endl << endl;
-	
-	cout << "Fuente generado" << endl;
-	cout << inventarioPsu.front().mostrarNombre() << endl;
-	cout << inventarioPsu.front().mostrarMarca() << endl;
-	cout << inventarioPsu.front().mostrarPrecio() << endl;
-	cout << inventarioPsu.front().mostrarWatts() << endl;
-	cout << inventarioPsu.front().mostrarSiTieneCertificacion() << endl;
-	cout << inventarioPsu.front().mostrarCertificacion() << endl;
-	cout << inventarioPsu.front().mostrarSiEsModular() << endl << endl;
-	
-	cout << "Ram generada" << endl;
-	cout << inventarioRam.front().mostrarNombre() << endl;
-	cout << inventarioRam.front().mostrarMarca() << endl;
-	cout << inventarioRam.front().mostrarPrecio() << endl;
-	cout << inventarioRam.front().mostrarTipo() << endl;
-	cout << inventarioRam.front().mostrarCapacidad() << endl;
-	cout << inventarioRam.front().mostrarVelocidad() << endl;
-	cout << inventarioRam.front().mostrarLatencia() << endl << endl;
-	
-	cout << "Mother generada" << endl;
-	cout << inventarioMotherboard.front().mostrarNombre() << endl;
-	cout << inventarioMotherboard.front().mostrarMarca() << endl;
-	cout << inventarioMotherboard.front().mostrarPrecio() << endl;
-	cout << inventarioMotherboard.front().mostrarFormato() << endl;
-	cout << inventarioMotherboard.front().mostrarChipset() << endl;
-	cout << inventarioMotherboard.front().mostrarSocketCpu() << endl;
-	cout << inventarioMotherboard.front().mostrarSlotsRam() << endl << endl;
-	
-	cout << "SSD generada" << endl;
-	cout << inventarioSsd.front().mostrarNombre() << endl;
-	cout << inventarioSsd.front().mostrarMarca() << endl;
-	cout << inventarioSsd.front().mostrarPrecio() << endl;
-	cout << inventarioSsd.front().mostrarCapacidad() << endl;
-	cout << inventarioSsd.front().mostrarVelocidadLectura() << endl;
-	cout << inventarioSsd.front().mostrarVelocidadEscritura() << endl;
-	cout << inventarioSsd.front().mostrarPcie() << endl << endl;
-	
-	cout << "Disipador generado" << endl;
-	cout << inventarioDisipador.front().mostrarNombre() << endl;
-	cout << inventarioDisipador.front().mostrarMarca() << endl;
-	cout << inventarioDisipador.front().mostrarPrecio() << endl;
-	cout << inventarioDisipador.front().mostrarCompatibilidadSocket() << endl;
-	cout << inventarioDisipador.front().mostrarHeatPipes() << endl << endl;
-	
-	cout << "Refrigeracion liquida generado" << endl;
-	cout << inventarioRefrigeracionLiquida.front().mostrarNombre() << endl;
-	cout << inventarioRefrigeracionLiquida.front().mostrarMarca() << endl;
-	cout << inventarioRefrigeracionLiquida.front().mostrarPrecio() << endl;
-	cout << inventarioRefrigeracionLiquida.front().mostrarCompatibilidadSocket() << endl;
-	cout << inventarioRefrigeracionLiquida.front().mostrarNumVentiladores() << endl << endl;
-	
-	cout << "Gabinete generado" << endl;
-	cout << inventarioGabinete.front().mostrarNombre() << endl;
-	cout << inventarioGabinete.front().mostrarMarca() << endl;
-	cout << inventarioGabinete.front().mostrarPrecio() << endl;
-	cout << inventarioGabinete.front().mostrarTamanio() << endl;
-	cout << inventarioGabinete.front().mostrarMaterial() << endl << endl;*/
-	
 	return 0;
 }

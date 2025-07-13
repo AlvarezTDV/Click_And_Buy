@@ -19,6 +19,20 @@ queue <disipador> inventarioDisipador;
 queue <refrigeracionLiquida> inventarioRefrigeracionLiquida;
 queue <gabinete> inventarioGabinete;
 
+//VENTAS REALIZADAS
+queue <gpu> ventasGpu;
+queue <cpu> ventasCpu;
+queue <psu> ventasPsu;
+queue <ram> ventasRam;
+queue <motherboard> ventasMotherboard;
+queue <ssd> ventasSsd;
+queue <disipador> ventasDisipador;
+queue <refrigeracionLiquida> ventasRefrigeracionLiquida;
+queue <gabinete> ventasGabinete;
+
+//TEXTO TAB
+const char tab = '\t';
+
 //GENERAR NUMEROS ALEATORIOS
 int NumRandom(int min, int max) {
 	thread_local static random_device rd;
@@ -35,7 +49,7 @@ void producirComponente(int proveedor) {
 			gpu gpuTemp;
 			gpuTemp.generarTarjeta();
 			inventarioGpu.push(gpuTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego una tarjeta grafica " << gpuTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego una tarjeta grafica " << gpuTemp.mostrarNombre() << endl << endl;
 			sem_post(&gpuDisponible); //HAY STOCK
 			break;
 		}
@@ -43,7 +57,7 @@ void producirComponente(int proveedor) {
 			cpu cpuTemp;
 			cpuTemp.generarProcesador();
 			inventarioCpu.push(cpuTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego un procesador " << cpuTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego un procesador " << cpuTemp.mostrarNombre() << endl << endl;
 			sem_post(&cpuDisponible); //HAY STOCK
 			break;
 		}
@@ -51,7 +65,7 @@ void producirComponente(int proveedor) {
 			psu psuTemp;
 			psuTemp.generarFuente();
 			inventarioPsu.push(psuTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego una fuente " << psuTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego una fuente " << psuTemp.mostrarNombre() << endl << endl;
 			sem_post(&psuDisponible); //HAY STOCK
 			break;
 		}
@@ -59,7 +73,7 @@ void producirComponente(int proveedor) {
 			ram ramTemp;
 			ramTemp.generarRam();
 			inventarioRam.push(ramTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego una ram " << ramTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego una ram " << ramTemp.mostrarNombre() << endl << endl;
 			sem_post(&ramDisponible); //HAY STOCK
 			break;
 		}
@@ -67,7 +81,7 @@ void producirComponente(int proveedor) {
 			motherboard motherboardTemp;
 			motherboardTemp.generarMotherboard();
 			inventarioMotherboard.push(motherboardTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego una motherboard " << motherboardTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego una motherboard " << motherboardTemp.mostrarNombre() << endl << endl;
 			sem_post(&motherboardDisponible); //HAY STOCK
 			break;
 		}
@@ -75,7 +89,7 @@ void producirComponente(int proveedor) {
 			ssd ssdTemp;
 			ssdTemp.generarSsd();
 			inventarioSsd.push(ssdTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego una ssd " << ssdTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego una ssd " << ssdTemp.mostrarNombre() << endl << endl;
 			sem_post(&ssdDisponible); //HAY STOCK
 			break;
 		}
@@ -83,7 +97,7 @@ void producirComponente(int proveedor) {
 			disipador disipadorTemp;
 			disipadorTemp.generarDisipador();
 			inventarioDisipador.push(disipadorTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego un disipador " << disipadorTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego un disipador " << disipadorTemp.mostrarNombre() << endl << endl;
 			sem_post(&disipadorDisponible); //HAY STOCK
 			break;
 		}
@@ -91,7 +105,7 @@ void producirComponente(int proveedor) {
 			refrigeracionLiquida refrigeracionLiquidaTemp;
 			refrigeracionLiquidaTemp.generarRefrigeracionLiquida();
 			inventarioRefrigeracionLiquida.push(refrigeracionLiquidaTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego una refrigeracion liquida " << refrigeracionLiquidaTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego una refrigeracion liquida " << refrigeracionLiquidaTemp.mostrarNombre() << endl << endl;
 			sem_post(&refrigeracionLiquidaDisponible); //HAY STOCK
 			break;
 		}
@@ -99,7 +113,7 @@ void producirComponente(int proveedor) {
 			gabinete gabineteTemp;
 			gabineteTemp.generarGabinete();
 			inventarioGabinete.push(gabineteTemp);
-			cout << "Proveedor Nro " << proveedor << ": Llego un gabinete " << gabineteTemp.mostrarNombre() << endl;
+			cout << tab << tab << "PROVEEDOR [" << proveedor << "]: Llego un gabinete " << gabineteTemp.mostrarNombre() << endl << endl;
 			sem_post(&gabineteDisponible); //HAY STOCK
 			break;
 		}
@@ -112,99 +126,108 @@ void consumirComponente(int& cliente) {
 	switch (num) {
 		case 1: {
 			if (sem_trywait(&gpuDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro una tarjeta grafica " << inventarioGpu.front().mostrarNombre() << endl;
+				ventasGpu.push(inventarioGpu.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro una tarjeta grafica " << inventarioGpu.front().mostrarNombre() << endl << endl;
 				inventarioGpu.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian tarjetas graficas en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian tarjetas graficas en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 2: {
 			if (sem_trywait(&cpuDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro un procesador " << inventarioCpu.front().mostrarNombre() << endl;
+				ventasCpu.push(inventarioCpu.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro un procesador " << inventarioCpu.front().mostrarNombre() << endl << endl;
 				inventarioCpu.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian procesadores en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian procesadores en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 3: {
 			if (sem_trywait(&psuDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro una fuente " << inventarioPsu.front().mostrarNombre() << endl;
+				ventasPsu.push(inventarioPsu.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro una fuente " << inventarioPsu.front().mostrarNombre() << endl << endl;
 				inventarioPsu.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian fuentes en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian fuentes en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 4: {
 			if (sem_trywait(&ramDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro una ram " << inventarioRam.front().mostrarNombre() << endl;
+				ventasRam.push(inventarioRam.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro una ram " << inventarioRam.front().mostrarNombre() << endl << endl;
 				inventarioRam.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian rams en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian rams en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 5: {
 			if (sem_trywait(&motherboardDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro una motherboard " << inventarioMotherboard.front().mostrarNombre() << endl;
+				ventasMotherboard.push(inventarioMotherboard.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro una motherboard " << inventarioMotherboard.front().mostrarNombre() << endl << endl;
 				inventarioMotherboard.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian motherboards en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian motherboards en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 6: {
 			if (sem_trywait(&ssdDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro una ssd " << inventarioSsd.front().mostrarNombre() << endl;
+				ventasSsd.push(inventarioSsd.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro una ssd " << inventarioSsd.front().mostrarNombre() << endl << endl;
 				inventarioSsd.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian ssd en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian ssd en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 7: {
 			if (sem_trywait(&disipadorDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro un disipador " << inventarioDisipador.front().mostrarNombre() << endl;
+				ventasDisipador.push(inventarioDisipador.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro un disipador " << inventarioDisipador.front().mostrarNombre() << endl << endl;
 				inventarioDisipador.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian disipadores en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian disipadores en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 8: {
 			if (sem_trywait(&refrigeracionLiquidaDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro una refrigeracion liquida " << inventarioRefrigeracionLiquida.front().mostrarNombre() << endl;
+				ventasRefrigeracionLiquida.push(inventarioRefrigeracionLiquida.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro una refrigeracion liquida " << inventarioRefrigeracionLiquida.front().mostrarNombre() << endl << endl;
 				inventarioRefrigeracionLiquida.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian refrigeraciones liquidas en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian refrigeraciones liquidas en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;
 		}
 		case 9: {
 			if (sem_trywait(&gabineteDisponible) == 0) { //VERIFICA SI SE CONSUMIO, DE LO CONTRARIO SE MANDA MENSAJE DE QUE NO HAY STOCK
-				cout << "Cliente Nro " << cliente << ": Compro un gabinete " << inventarioGabinete.front().mostrarNombre() << endl;
+				ventasGabinete.push(inventarioGabinete.front());
+				cout << tab << tab << "CLIENTE [" << cliente << "]: Compro un gabinete " << inventarioGabinete.front().mostrarNombre() << endl << endl;
 				inventarioGabinete.pop();
 				cliente++;
 			} else {
-				cout << "Cliente Nro " << cliente << ": No pudo comprar nada, no habian gabinetes en ese momento" << endl;
+				cout << tab << tab << "CLIENTE [" << cliente << "]: No pudo comprar nada, no habian gabinetes en ese momento" << endl << endl;
 				cliente++;
 			}
 			break;

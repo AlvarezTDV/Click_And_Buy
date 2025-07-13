@@ -47,6 +47,9 @@ extern sem_t gabineteDisponible;
 //VARIABLE PARA SABER QUE NUM DE CLIENTE ES
 extern int cliente;
 
+//TEXTO TAB
+extern const char tab;
+
 //INVENTARIO
 extern queue <gpu> inventarioGpu;
 extern queue <cpu> inventarioCpu;
@@ -57,5 +60,16 @@ extern queue <ssd> inventarioSsd;
 extern queue <disipador> inventarioDisipador;
 extern queue <refrigeracionLiquida> inventarioRefrigeracionLiquida;
 extern queue <gabinete> inventarioGabinete;
+
+//VENTAS REALIZADAS
+extern queue <gpu> ventasGpu;
+extern queue <cpu> ventasCpu;
+extern queue <psu> ventasPsu;
+extern queue <ram> ventasRam;
+extern queue <motherboard> ventasMotherboard;
+extern queue <ssd> ventasSsd;
+extern queue <disipador> ventasDisipador;
+extern queue <refrigeracionLiquida> ventasRefrigeracionLiquida;
+extern queue <gabinete> ventasGabinete;
 
 #endif
