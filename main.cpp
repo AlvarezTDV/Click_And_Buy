@@ -8,10 +8,8 @@ using namespace std;
 int cliente = 1;
 
 int main() {
-	//SEMAFOROS
-	sem_init(&mutex, 0, 1);
-	sem_init(&libres, 0 , 9);
-	sem_init(&ocupados, 0, 0);
+	//SE INICIALIZAN LOS SEMAFOROS
+	inicializarSemaforos();
 	
 	//PRODUCTORES
 	thread t1(productor, 3, 1);
@@ -26,7 +24,7 @@ int main() {
 	t1.join();
 	t2.join();
 	t3.join();
-	
+
 	t4.join();
 	t5.join();
 	t6.join();

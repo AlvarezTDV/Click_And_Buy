@@ -24,11 +24,27 @@ void productor(int, int);
 //CONSUMIDOR O VENTAS
 void consumidor(int, int&);
 
-//SEMAFOROS
+//INICIALIZAR SEMAFOROS
+void inicializarSemaforos();
+
+//SEMAFOROS PRINCIPALES
 extern sem_t mutex; //MUTEX PARA PROTEGER LA SECCION CRITICA
 extern sem_t libres;
 extern sem_t ocupados;
 extern sem_t numRandom; //MUTEX PARA PROTEGER EL ACCESO A LOS NUMEROS ALEATORIOS
+
+//SEMAFOROS ESPECIFICOS
+extern sem_t gpuDisponible;
+extern sem_t cpuDisponible;
+extern sem_t psuDisponible;
+extern sem_t ramDisponible;
+extern sem_t motherboardDisponible;
+extern sem_t ssdDisponible;
+extern sem_t disipadorDisponible;
+extern sem_t refrigeracionLiquidaDisponible;
+extern sem_t gabineteDisponible;
+
+//VARIABLE PARA SABER QUE NUM DE CLIENTE ES
 extern int cliente;
 
 //INVENTARIO
