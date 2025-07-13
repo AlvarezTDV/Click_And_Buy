@@ -2,15 +2,34 @@
 #define funciones_h
 
 #include "includes.h"
+
 #include <queue>
+#include <semaphore.h>
 using namespace std;
 
 //FUNCIONES QUE SE VAYAN A USAR DE MANERA REPETIDA
 
 //GENERAR NUMEROS ALEATORIOS
 int NumRandom(int, int);
-void producirComponente();
+
+//PRODUCIR COMPONENTE
+void producirComponente(int);
+
+//CONSUMIR COMPONENTE
 void consumirComponente();
+
+//PRODUCTOR O PROVEEDOR
+void productor(int, int);
+
+//CONSUMIDOR O VENTAS
+void consumidor(int, int&);
+
+//SEMAFOROS
+extern sem_t mutex; //MUTEX PARA PROTEGER LA SECCION CRITICA
+extern sem_t libres;
+extern sem_t ocupados;
+extern sem_t numRandom; //MUTEX PARA PROTEGER EL ACCESO A LOS NUMEROS ALEATORIOS
+extern int cliente;
 
 //INVENTARIO
 extern queue <gpu> inventarioGpu;

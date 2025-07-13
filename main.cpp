@@ -1,11 +1,36 @@
 #include "include/includes.h"
 
 #include <iostream>
+#include <thread>
+#include <semaphore.h>
 using namespace std;
 
-int i = 0; //INDICE DEL ARREGLO DE COMPONENTES
+int cliente = 1;
 
 int main() {
+	//SEMAFOROS
+	sem_init(&mutex, 0, 1);
+	sem_init(&libres, 0 , 9);
+	sem_init(&ocupados, 0, 0);
+	
+	//PRODUCTORES
+	thread t1(productor, 3, 1);
+	thread t2(productor, 3, 2);
+	thread t3(productor, 3, 3);
+	
+	//CONSUMIDORES
+	thread t4(consumidor, 3, ref(cliente));
+	thread t5(consumidor, 3, ref(cliente));
+	thread t6(consumidor, 3, ref(cliente));
+	
+	t1.join();
+	t2.join();
+	t3.join();
+	
+	t4.join();
+	t5.join();
+	t6.join();
+	
 	//PROBANDO SI SE GENERAN LOS COMPONENTES
 	/*gpu g1;
 	g1.generarTarjeta();
@@ -101,9 +126,10 @@ int main() {
 	cout << ga1.mostrarTamanio() << endl;
 	cout << ga1.mostrarMaterial() << endl << endl;*/
 	
+	/*
 	producirComponente();
 	consumirComponente();
-	
+	*/
 	/*
 	cout << "Tarjeta generada:" << endl;
 	cout << inventarioGpu.front().mostrarNombre() << endl;
